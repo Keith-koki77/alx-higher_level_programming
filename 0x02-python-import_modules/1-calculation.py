@@ -3,9 +3,6 @@
 from calculator_1 import add, sub, mul, div
 
 def main():
-    # Arguments:
-    # a: first integer
-    # b: second integer
 
     a = 10
     b = 5
