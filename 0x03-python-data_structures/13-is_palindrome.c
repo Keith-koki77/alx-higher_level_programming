@@ -1,7 +1,6 @@
 #include "lists.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <stddef.h>
 
 /**
  * reverse_list - reverses second half of linked list.
