@@ -4,6 +4,9 @@
 
 
 class Square():
+    """square with size getter setter area and print"""
+
+
     def __init__(self, size=0):
         self.size = size
 
@@ -28,7 +31,7 @@ class Square():
 
     def my_print(self):
         if self.__size == 0:
-            print()
+            print("")
         else:
-            for _ in range(self.__size):
+            for i in range(self.__size):
                 print("#" * self.__size)
