@@ -71,6 +71,38 @@ class Rectangle:
             return 0
         return 2 * (self.__width + self.__height)
 
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        """ Return the rectangle with the greatest area
+
+        Arguments:
+                    rect_1: first rectangle
+                    rect_2; second rectangle
+
+        Raises:
+                TypeError: if either rect_1 or rect_2 isn't a rectangle
+
+        """
+
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        if rect_1.area() >= rect_2.area():
+            return rect_1
+        return rect_2
+
+    @classmethod
+    def square(cls, size=0):
+
+        """ Returns a new rectangle with width and height equal in size
+
+        Arguments:
+                    size(int): The height and width of new rectangle 
+        """
+
+        return (cls(size, size))
+
     def __str__(self):
         """ Returns printable representation of rectangle 
 
