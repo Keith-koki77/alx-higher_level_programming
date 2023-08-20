@@ -9,22 +9,17 @@ import MySQLdb
 if __name__ == "__main__":
     import sys
 
-    try:
-        db = mysql.connect(host='localhost', port=3306, user=argv[1],
-                           passwd=argv[2], db=argv[3])
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
 
-    except Exception:
-        print('Failed to connect to the database')
-        exit(0)
+    db = MySQLdb.connect(host='localhost', port=3306, user=username,
+                           passwd=password, db=database)
 
-    cursor = db.cursor()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM states ORDER BY states.id ASC")
 
-    cursor.execute("SELECT * FROM states ORDER BY id ASC;")
+    rows = cur.fetchall()
 
-    result_query = cursor.fetchall()
-
-    for row in result_query:
+    for row in rows:
         print(row)
-
-    cursor.close()
-    db.close()
