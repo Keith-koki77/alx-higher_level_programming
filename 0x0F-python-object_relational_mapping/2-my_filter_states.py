@@ -9,23 +9,23 @@ if __name__ == "__main__":
     import MySQLdb
     import sys
 
-    user_name = sys.argv[1]
+    username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
     state_name = sys.argv[4]
 
-    db = MySQLdb.connect(host="localhost", user=user_name, passwd=password, db=database)
+    db = MySQLdb.connect(host="localhost", user=username, passwd=password, db=database)
 
     cursor = db.cursor()
 
     query = "SELECT * FROM states WHERE name LIKE %s ORDER BY id ASC"
 
-    cursor.execute(query, (state_name,))
+    cursor.execute(query.format(state_name))
 
-    results = cursor.fetchall()
+    rows = cursor.fetchone()
 
-    for result in results:
-        print(result)
+    for row in rows:
+        print(row)
 
     cursor.close()
     db.close()
