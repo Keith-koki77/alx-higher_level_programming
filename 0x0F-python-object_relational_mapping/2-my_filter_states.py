@@ -7,24 +7,26 @@ in the states table of hbtn_0e_0_usa where name matches the argument.
 if __name__ == "__main__":
 
     import MySQLdb
-    import sys
+    from sys import argv
 
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    state_name = sys.argv[4]
+    try:
+        db = mysql.connect(host='localhost', port=3306, user=argv[1],
+                           passwd=argv[2], db=argv[3])
 
-    db = MySQLdb.connect(host="localhost", user=username, passwd=password, db=database)
+    except Exception:
+        print('Failed to connect to the database')
+        exit(0)
+
+    searched = argv[4]
 
     cursor = db.cursor()
 
-    query = "SELECT * FROM states WHERE name LIKE %s ORDER BY id ASC"
+    cursor.execute("SELECT * FROM states WHERE name = BINARY '{:s}' \
+                    ORDER BY id ASC;".format(searched))
 
-    cursor.execute(query.format(state_name))
+    result_query = cursor.fetchall()
 
-    rows = cursor.fetchone()
-
-    for row in rows:
+    for row in result_query:
         print(row)
 
     cursor.close()
