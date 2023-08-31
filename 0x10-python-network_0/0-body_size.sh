@@ -1,3 +1,3 @@
 #!/bin/bash
-url=$1 #Gets the URL from the cmd line argument
-curl -s -I "$url" | wc -c
+#Bash script that takes in a URL, sends a request to that URL
+curl -s "$1" | wc -c
