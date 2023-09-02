@@ -7,21 +7,5 @@ import sys
 import urllib.request
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <URL>")
-        sys.exit(1)
-
-    url = sys.argv[1]
-
-    try:
-        with urllib.request.urlopen(url) as response:
-            if 'X-Request-Id' in response.headers:
-                x_request_id = response.headers['X-Request-Id']
-                print(f"X-Request-Id: {x_request_id}")
-            else:
-                print("X-Request-Id header not found in the response.")
-
-    except urllib.error.URLError as e:
-        print(f"Failed to retrieve data from {url}: {e}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    with urllib.request.urlopen(sys.argv[1]) as res:
+        print(res.info()['X-Request-Id'])
