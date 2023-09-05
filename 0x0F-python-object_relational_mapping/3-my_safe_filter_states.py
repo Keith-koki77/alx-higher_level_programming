@@ -4,8 +4,8 @@
  states table of hbtn_0e_0_usa where name matches the argument.
 """
 
-import sys
-import MySQLdb
+from sys import argv
+import MySQLdb as db
 
 if __name__ == "__main__":
     db_connect = db.connect(host="localhost", port=3306, user=argv[1],
