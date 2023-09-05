@@ -3,31 +3,24 @@
 script that takes in an argument and displays all values
 in the states table of hbtn_0e_0_usa where name matches the argument.
 """
+import MySQLdb
+import sys
 
-if __name__ == "__main__":
 
-    import MySQLdb
-    from sys import argv
+def main():
+    """
+    displays all values in thr states table of the database
+    where name matches
+    """
+    if len(sys.argv) != 5:
+        return
 
-    try:
-        db = mysql.connect(host='localhost', port=3306, user=argv[1],
-                           passwd=argv[2], db=argv[3])
+    db = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=sys.argv[2],
+        db=sys.argv[3]
+    )
 
-    except Exception:
-        print('Failed to connect to the database')
-        exit(0)
-
-    searched = argv[4]
-
-    cursor = db.cursor()
-
-    cursor.execute("SELECT * FROM states WHERE name = BINARY '{:s}' \
-                    ORDER BY id ASC;".format(searched))
-
-    result_query = cursor.fetchall()
-
-    for row in result_query:
-        print(row)
-
-    cursor.close()
-    db.close()
+    cur = db.cursor()
+    cur.exec
