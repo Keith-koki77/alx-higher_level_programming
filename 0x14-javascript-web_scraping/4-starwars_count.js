@@ -1,5 +1,6 @@
 #!/usr/bin/node
-//Script that prints the number of movies where the character “Wedge Antilles” is present.
+//Script that prints the number of movies where
+//the character “Wedge Antilles” is present.
 
 const request = require('request');
 const url = process.argv[2];
