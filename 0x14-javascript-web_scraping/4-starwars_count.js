@@ -17,16 +17,16 @@ request.get(apiUrl, (error, response, body) => {
     return;
   }
 
+  if (response.statusCode !== 200) {
+    console.error('Error:', `Status Code ${response.statusCode}`);
+    process.exit(1);
+  }
+
   const filmsData = JSON.parse(body);
-  
-  let wedgeAntillesCount = 0;
+ 
+  const wedgeAntillesFilms = filmsData.results.filter((film) =>
+    film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)
+  );
 
-  filmsData.results.forEach((film) => {
-    if (film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)) {
-      wedgeAntillesCount++;
-    }
-
-  });
-
-  console.log(`${wedgeAntillesCount}`);
+  console.log(wedgeAntillesFilms.length);
 });
