@@ -19,11 +19,11 @@ request.get(apiUrl, (error, response, body) => {
     return;
   }
 
-const data = JSON.parse(body);
+  const data = JSON.parse(body);
 
-if (data && data.title) {
-  console.log(`${data.title}`);
-} else {
-  console.error('Movie not found or title not available.');
-}
+  if (data && data.title) {
+    console.log(`${data.title}`);
+  } else {
+    console.error('Movie not found or title not available.');
+  }
 });
