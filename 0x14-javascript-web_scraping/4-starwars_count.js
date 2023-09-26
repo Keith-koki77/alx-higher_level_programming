@@ -13,7 +13,7 @@ const characterId = 18;
 
 request.get(apiUrl, (error, response, body) => {
   if (error) {
-    console.error('Error:', error);
+    console.log(error);
     return;
   }
 
